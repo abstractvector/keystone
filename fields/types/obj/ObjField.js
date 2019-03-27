@@ -6,13 +6,7 @@ import React from 'react';
 import Field from '../Field';
 
 import { Fields } from 'FieldTypes';
-import { Button, GlyphButton } from '../../../admin/client/App/elemental';
 import InvalidFieldType from '../../../admin/client/App/shared/InvalidFieldType';
-
-let i = 0;
-function generateId () {
-	return i++;
-};
 
 const ItemDom = ({ children }) => (
 	<div style={{
@@ -33,7 +27,7 @@ module.exports = Field.create({
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func.isRequired,
 		path: React.PropTypes.string.isRequired,
-		value: React.PropTypes.object.isRequired
+		value: React.PropTypes.object.isRequired,
 	},
 	handleFieldChange (event) {
 		const { value: oldValue, path, onChange } = this.props;
@@ -66,9 +60,9 @@ module.exports = Field.create({
 	renderItems () {
 		const { value = {}, path } = this.props;
 		return (
-				<ItemDom>
-					{this.renderFieldsForItem(value, path)}
-				</ItemDom>
+			<ItemDom>
+				{this.renderFieldsForItem(value, path)}
+			</ItemDom>
 		);
 	},
 	renderUI () {

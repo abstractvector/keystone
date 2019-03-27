@@ -37,6 +37,8 @@ function getNameFromData (data) {
 	return data;
 }
 
+// not sure why this isn't being used but don't know enough to delete it
+// eslint-disable-next-line no-unused-vars
 function smoothScrollTop () {
 	var position = window.scrollY || window.pageYOffset;
 	var speed = position / 10;

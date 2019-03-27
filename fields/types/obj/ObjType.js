@@ -1,9 +1,7 @@
-var async = require('async');
 var FieldType = require('../Type');
 var util = require('util');
 var utils = require('keystone-utils');
 var isReserved = require('../../../lib/list/isReserved');
-var q = require('q');
 var _ = require('lodash');
 
 /**
@@ -104,9 +102,9 @@ obj.prototype.addToSchema = function (schema) {
 	field.paths = {};
 	fieldsArray.forEach(function (f) { field.paths[f.path] = field.path + '.' + f.path; });
 
-	field.paths['serialised'] = this.path + '.serialised';
-	field.paths['improve'] = this.path + '_improve';
-	field.paths['overwrite'] = this.path + '_improve_overwrite';
+	field.paths.serialised = this.path + '.serialised';
+	field.paths.improve = this.path + '_improve';
+	field.paths.overwrite = this.path + '_improve_overwrite';
 
 	schema.virtual(field.paths.serialised).get(function () {
 		var _this = this;
@@ -147,7 +145,7 @@ obj.prototype.addFilterToQuery = function (filter) { };
  * Asynchronously confirms that the provided value is valid
  */
 obj.prototype.validateInput = function (data, callback) {
-	
+
 	var result = true;
 	utils.defer(callback, result);
 
@@ -186,7 +184,7 @@ obj.prototype.validateRequiredInput = function (item, data, callback) {
 obj.prototype.getData = function (item) {
 	var fieldsArray = this.fieldsArray;
 	var result = {};
-	if (!!item[this.path]) {
+	if (item[this.path]) {
 		for (var field of fieldsArray) {
 			result[field.path] = field.getData(item[this.path]);
 		}
@@ -215,20 +213,20 @@ obj.prototype.updateItem = function (item, data, files, callback) {
 	callback();
 };
 
-function getDataFromObject(data, field) {
+function getDataFromObject (data, field) {
 
 	let fullObject = {};
 
 	if (field.fieldsArray) {
 		field.fieldsArray.forEach(function (nestedField) {
 			if (nestedField.fieldsArray) {
-				fullObject[nestedField.path] = getDataFromObject(data, nestedField)
+				fullObject[nestedField.path] = getDataFromObject(data, nestedField);
 			} else {
 				fullObject[nestedField.path] = nestedField.getValueFromData(data[field.path] || data);
 			}
-		})
+		});
 	} else {
-		fullObject[field.path] = field.getValueFromData(data[nestedField.path] || data);
+		fullObject[field.path] = field.getValueFromData(data[field.path] || data);
 	}
 
 	return fullObject;
