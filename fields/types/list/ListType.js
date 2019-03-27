@@ -150,7 +150,6 @@ list.prototype.validateInput = function (data, callback) {
 	var field = this;
 	var value = this.getValueFromData(data);
 	var fieldsToValidate = [];
-	var result = true;
 
 	if (!!value && value.length) {
 		value.forEach(function (item) {
@@ -165,10 +164,10 @@ list.prototype.validateInput = function (data, callback) {
 	}
 
 	q.allSettled(fieldsToValidate)
-    .then(function(results) {
-    	var valid = !_.filter(results, function (result) { return !result.value; }).length;
-    	utils.defer(callback, valid);
-    });
+    .then(function (results) {
+	var valid = !_.filter(results, function (result) { return !result.value; }).length;
+	utils.defer(callback, valid);
+});
 };
 
 /**
@@ -240,7 +239,7 @@ list.prototype.updateItem = function (item, data, files, callback) {
 			next(err, newItem);
 		});
 	}, function (err, updatedValues) {
-		if (err) { return callback(err);}
+		if (err) { return callback(err); }
 		item.set(field.path, updatedValues);
 		callback();
 	});

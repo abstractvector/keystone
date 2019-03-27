@@ -101,7 +101,7 @@ module.exports = Field.create({
 		const { value = [], path, inputNamePrefix } = this.props;
 		const onAdd = this.addItem;
 		// Initialize inputNamePrefix for this list.
-		this.props.inputNamePrefix = ((a, b) => a?`${a}[${b}]`:b)(inputNamePrefix, path);
+		this.props.inputNamePrefix = ((a, b) => a ? `${a}[${b}]` : b)(inputNamePrefix, path);
 		return (
 			<div>
 				{value.map((value, index) => {
