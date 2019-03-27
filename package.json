@@ -1,11 +1,11 @@
 {
-  "name": "keystone",
+  "name": "@adventurousway/keystone",
   "version": "4.0.0",
   "description": "Web Application Framework and Admin GUI / Content Management System built on Express.js and Mongoose",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/keystonejs/keystone.git"
+    "url": "https://github.com/abstractvector/keystone.git"
   },
   "dependencies": {
     "async": "^2.5.0",
@@ -178,6 +178,10 @@
     "test-cov": "istanbul cover ./node_modules/mocha/bin/_mocha",
     "posttest-cov": "if [ -n \"$CODECLIMATE_REPO_TOKEN\" ]; then codeclimate-test-reporter < coverage/lcov.info; fi",
     "clean": "rimraf ./coverage",
-    "fields-explorer": "node ./fields/explorer/server.js"
+    "fields-explorer": "node ./fields/explorer/server.js",
+    "prepublishOnly": "npm run build",
+    "preversion": "npm run lint",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags"
   }
 }
