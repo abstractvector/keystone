@@ -1,4 +1,21 @@
-![KeystoneJS](http://v3.keystonejs.com/images/logo.svg)
+This is a fork of KeystoneJS meant for a private project.
+It might work for you. It might not.
+
+Here's the changes implemented:
+
+- `Obj` type for object fields
+- `List` type for array fields
+- Scroll fixed on for modal window when inserting data
+
+... I think that's it for now.
+
+~
+
+---
+title: KeystoneJS
+---
+
+![KeystoneJS](http://keystonejs.com/images/logo.svg)
 ===================================
 
 [![Build Status](https://travis-ci.org/keystonejs/keystone.svg?branch=master)](https://travis-ci.org/keystonejs/keystone)
