@@ -182,6 +182,6 @@
     "prepublishOnly": "npm run build",
     "preversion": "npm run lint",
     "version": "npm run build",
-    "postversion": "git push && git push --tags"
+    "postversion": ""
   }
 }
